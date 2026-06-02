@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+
+  # ======================
+  # POSTGRES
+  # ======================
+  postgres:
+    image: postgres:16-alpine
+    container_name: aset-core-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-aset_sekolah}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - aset-core-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ======================
+  # BACKEND
+  # ======================
+  backend:
+    build:
+      context: ./backend
+    container_name: aset-core-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5001
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/aset_sekolah
+      JWT_SECRET: aset_sekolah_secret
+      FRONTEND_URL: http://localhost:8080
+    ports:
+      - "5001:5001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - aset-core-network
+
+  # ======================
+  # FRONTEND
+  # ======================
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aset-core-frontend
+    restart: unless-stopped
+    environment:
+      VITE_API_URL: http://localhost:5001
+      VITE_SOCKET_URL: http://localhost:5001
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - aset-core-network
+    command: serve -s dist -l 8080
+
+# ======================
+# NETWORK
+# ======================
+networks:
+  aset-core-network:
+    driver: bridge
+
+# ======================
+# VOLUMES
+# ======================
+volumes:
+  postgres_data:
