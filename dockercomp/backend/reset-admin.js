@@ -10,7 +10,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const { Pool } = pkg;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5433/aset_sekolah'
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/aset_sekolah'
 });
 
 async function resetPassword() {
