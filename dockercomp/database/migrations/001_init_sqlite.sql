@@ -189,7 +189,7 @@ INSERT OR IGNORE INTO users (id, email, password_hash, role, is_active)
 VALUES (
     'admin-001',
     'admin@sekolah.com',
-    '$2a$12$4g/pbix27zaP7BvhFvm1pec5GVRJrHAFul14mQDJB8r4s27hLGgcq',
+    '$2a$12$4KZ1AdYGEh9A96K/1FrD9u7JRGQCL/JmE0Hi6c08qXp/5skNfvMji',
     'superadmin',
     1
 );
