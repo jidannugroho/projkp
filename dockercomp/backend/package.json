@@ -1,0 +1,42 @@
+{
+  "name": "aset-sekolah-backend",
+  "version": "1.0.0",
+  "description": "Backend for School Asset Management System",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "setup-sqlite": "node setup-sqlite.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^9.2.2",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.4.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "path": "^0.12.7",
+    "pdfkit": "^0.18.0",
+    "pdfkit-table": "^0.1.99",
+    "pg": "^8.11.5",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.3",
+    "table-layout": "^4.1.1",
+    "xss-clean": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
