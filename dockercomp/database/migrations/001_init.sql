@@ -215,7 +215,7 @@ CREATE INDEX idx_todos_created_at ON todos(created_at DESC);
 INSERT INTO users (email, password_hash, role, is_active)
 VALUES (
     'admin@sekolah.com',
-    '$2b$12$LQv3c1V.H9L7A.Y5L.Y5LeY5LeY5LeY5LeY5LeY5LeY5LeY5LeY5L', -- Placeholder bcrypt hash
+    '$2a$12$gdTo/Gy5xw/iHL1JZrW6/ugrAODrHbT45FKl7V6TpHBcjDU6IRATy', -- Placeholder bcrypt hash
     'superadmin',
     true
 ) RETURNING id;
